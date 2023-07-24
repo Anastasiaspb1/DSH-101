@@ -1,12 +1,18 @@
-SYMBOL_SIZE = 4
-line_size = 25 * SYMBOL_SIZE
-page_size = 50 * line_size
-book_size = 100 * page_size
+salary = 5000  # Ежемесячная зарплата
+spend = 6000  # Траты за первый месяц
+months = 10  # Количество месяцев, которое планируется протянуть без долгов
+increase = 0.03  # Ежемесячный рост цен
 
-disk_size_mb = 1.44
-disk_size_kb = disk_size_mb * 1024
-disk_size_b = disk_size_kb * 1024
+total_salary = 0
+total_spend = 0
 
-books_in_disk = int(disk_size_b // book_size)  # TODO Найдите количество книг, которое можно разместить на дискете
+for _ in range(months):
+    total_salary += salary
+    total_spend += spend
+    spend = spend * (1 + increase)
 
-print("Количество книг, помещающихся на дискету:", books_in_disk)
+money_capital = total_spend - total_salary
+
+# TODO Рассчитайте подушку безопасности, чтобы протянуть 10 месяцев без долгов
+
+print(f"Подушка безопасности, чтобы протянуть {months} месяцев без долгов: {money_capital:.0f}")
